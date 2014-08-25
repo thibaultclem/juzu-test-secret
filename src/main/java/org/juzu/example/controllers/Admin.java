@@ -16,19 +16,22 @@
  */
 package org.juzu.example.controllers;
 
-import juzu.Path;
-import juzu.Response;
-import juzu.Route;
-import juzu.View;
+import juzu.*;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.juzu.example.services.SecretService;
 
 import javax.inject.Inject;
 
 /**
- * Created by The eXo Platform SAS Author : Thibault Clement exo@exoplatform.com
+ * Created by The eXo Platform SAS Author :
+ * Thibault Clement
+ * exo@exoplatform.com
  */
 public class Admin {
+
+  @Inject
+  SecretService                    secretService;
 
   @Inject
   @Path("admin.gtmpl")
@@ -37,8 +40,28 @@ public class Admin {
   @View
   @Route("/admin")
   @RequiresRoles("watcher")
-  public Response admin(AuthorizationException e) {
+  public Response adminPage(AuthorizationException e) {
 
-    return e == null ? adminPage.with().page("admin").ok() : Response.redirect("/login");
+    return e == null ? adminPage.with()
+                                .page("admin")
+                                .secretsEnabled(secretService.findAllEnabled().getSecrets())
+                                .secretsDisabled(secretService.findAllDisabled().getSecrets())
+                                .ok() : Response.redirect("/login");
   }
+
+    @Action
+    @Route("/admin/secrets/{id}/disable")
+    @RequiresRoles("watcher")
+    public Response disableSecret(Integer id) {
+        secretService.disabled(id);
+        return Admin_.adminPage();
+    }
+
+    @Action
+    @Route("/admin/secrets/{id}/enable")
+    @RequiresRoles("watcher")
+    public Response enableSecret(Integer id) {
+        secretService.enabled(id);
+        return Admin_.adminPage();
+    }
 }

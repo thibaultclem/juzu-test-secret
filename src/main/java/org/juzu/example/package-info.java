@@ -22,13 +22,10 @@
 })
 @WebJars({
         @WebJar("bootstrap"),
-        @WebJar("jquery"),
-        @WebJar("angularjs")
+        @WebJar("jquery")
 })
 @Scripts({
         @Script(id = "bootstrap.js", value = "bootstrap/3.2.0/js/bootstrap.min.js", depends = "jquery.js"),
-        @Script(id = "angular.js", value = "angularjs/1.2.22/angular.min.js"),
-        @Script(id = "angular-animate.js", value = "angularjs/1.2.22/angular-animate.js"),
         @Script(id = "jquery.js", value = "jquery/2.1.1/jquery.min.js")
 })
 @Stylesheets({

@@ -25,7 +25,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by The eXo Platform SAS Author : Thibault Clement exo@exoplatform.com
+ * Created by The eXo Platform SAS Author :
+ * Thibault Clement
+ * exo@exoplatform.com
  */
 
 @Singleton
@@ -48,8 +50,9 @@ public class SecretService {
               "http://fc02.deviantart.net/fs71/f/2009/364/9/d/christmas_love_by_skubaNiec.jpg");
       add("I spent 2 hours a day to train my cat to perform a backflip",
               "http://fc06.deviantart.net/fs15/i/2007/008/e/b/colour_cat_wallpaper_by_jellyplant.jpg");
-      add("I never go outside Paris. So afraid about it",
+      add("Please do not disabled my secret... !",
               "https://c1.staticflickr.com/7/6044/6327604415_4c14c406a7_z.jpg");
+      disabled(6);
   }
 
   public void add(String msg, String imgUrl) {
@@ -62,7 +65,7 @@ public class SecretService {
     secret.setEnable(true);
   }
 
-  public void disbaled(Integer id) {
+  public void disabled(Integer id) {
     Secret secret = secrets.get(id);
     secret.setEnable(false);
   }

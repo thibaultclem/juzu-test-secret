@@ -20,7 +20,6 @@ import juzu.Path;
 import juzu.Response;
 import juzu.Route;
 import juzu.View;
-import org.juzu.example.models.Secret;
 import org.juzu.example.services.SecretService;
 
 import javax.inject.Inject;
@@ -43,10 +42,6 @@ public class SecretWall {
     @Route("/secretWall")
     public Response.Content secretWall() {
 
-        System.out.println("start secretWall");
-        for(Secret secret : secretService.findAllEnabled().getSecrets()) {
-            System.out.println(secret.getMessage());
-        }
         return secretWall.with().page("secretWall").secrets(secretService.findAllEnabled().getSecrets()).ok();
     }
 }
