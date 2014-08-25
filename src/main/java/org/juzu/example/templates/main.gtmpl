@@ -1,0 +1,31 @@
+<div class="navbar-wrapper">
+    <div class="container">
+        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <span class="navbar-brand" href="#">JuZcret</span>
+                </div>
+
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li <%if(page == "index") {%>class="active"<%}%>><a href="/">Home</a></li>
+                        <li <%if(page == "secretWall") {%>class="active"<%}%>><a href="/secretWall">Secret Wall</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li <%if(page == "admin") {%>class="active"<%}%>><a href="/admin"><span class="glyphicon glyphicon-cog" /></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Below will be insert the page content-->
+<div class="content">
+    #{insert/}
+</div>
+
