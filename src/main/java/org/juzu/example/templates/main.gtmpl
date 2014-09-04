@@ -12,11 +12,12 @@
 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li <%if(page == "index") {%>class="active"<%}%>><a href="/">Home</a></li>
-                        <li <%if(page == "secretWall") {%>class="active"<%}%>><a href="/secretWall">Secret Wall</a></li>
+                        <li <%if(page == "index") {%>class="active"<%}%>><a href="@{Application.index()}">Home</a></li>
+                        <li <%if(page == "shareSecretView") {%>class="active"<%}%>><a href="@{Application.shareSecretView()}">Share my Secret</a></li>
+                        <li <%if(page == "secretWallView") {%>class="active"<%}%>><a href="@{SecretWall.secretWallView()}">Secret Wall</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li <%if(page == "admin") {%>class="active"<%}%>><a href="/admin"><span class="glyphicon glyphicon-cog" /></a></li>
+                        <li <%if(page == "admin") {%>class="active"<%}%>><a href="@{Admin.adminPage()}"><span class="glyphicon glyphicon-cog" /></a></li>
                     </ul>
                 </div>
             </div>

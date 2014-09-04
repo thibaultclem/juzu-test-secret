@@ -16,10 +16,9 @@
 
 package org.juzu.example.controllers;
 
-import juzu.Path;
-import juzu.Response;
-import juzu.Route;
-import juzu.View;
+import juzu.*;
+import org.juzu.example.services.AlertService;
+import org.juzu.example.services.SecretService;
 
 import javax.inject.Inject;
 import java.io.IOException;
@@ -27,12 +26,25 @@ import java.io.IOException;
 public class Application {
 
   /*
+   * Services
+   */
+  @Inject
+  SecretService                        secretService;
+
+  @Inject
+  AlertService                         alertService;
+
+  /*
    * Template
    */
 
   @Inject
   @Path("index.gtmpl")
-  org.juzu.example.templates.index index;
+  org.juzu.example.templates.index     index;
+
+  @Inject
+  @Path("addSecret.gtmpl")
+  org.juzu.example.templates.addSecret addSecret;
 
   /*
    * View
@@ -45,18 +57,48 @@ public class Application {
     return index.with().page("index").ok();
   }
 
+  @View()
+  @Route("/shareSecret")
+  public Response.Content shareSecretView() {
+
+    return addSecret.with().page("shareSecretView").ok();
+  }
+
+  @View()
+  @Route("/shareSecretAddSuccess")
+  public Response.Content shareSecretAddSuccessView() {
+
+    return addSecret.with()
+                    .page("shareSecretView")
+                    .alertMessage(alertService.getBootstrapAlertMessage("success",
+                                                                        "Congratulation",
+                                                                        "Your secret has been added on the Secret Wall"))
+                    .ok();
+  }
+
+  @View()
+  @Route("/shareSecretAddFailed")
+  public Response.Content shareSecretAddFailedView() {
+
+    return addSecret.with()
+                    .page("shareSecretView")
+                    .alertMessage(alertService.getBootstrapAlertMessage("error",
+                                                                        "Message not added",
+                                                                        "Please try again or contact us if error persist"))
+                    .ok();
+  }
+
   /*
-   * Ajax
+   * Actions
    */
-  /*
-   * @Ajax
-   * @Resource public Response.Content addSecret(String message, String imgURL)
-   * { return null; }
-   * @Ajax
-   * @Resource
-   * @RequiresRoles("admin")
-   * @RequiresPermissions("delete") public Response.Content deleteSecret(String
-   * id) { return null; }
-   */
+  @Action
+  @Route("shareSecret/add")
+  public Response addSecret(String msg, String imgURL) {
+    if (secretService.add(msg, imgURL)) {
+      return Application_.shareSecretAddSuccessView();
+    } else {
+      return Application_.shareSecretAddFailedView();
+    }
+  }
 
 }

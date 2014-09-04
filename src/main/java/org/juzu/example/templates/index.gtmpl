@@ -28,23 +28,6 @@
         </div>
 
         <div class="item">
-            <img src="http://upload.wikimedia.org/wikipedia/commons/6/66/Sherlock_Holmes_and_the_Secret_Weapon_2.jpg"
-                 alt="Second slide">
-
-            <div class="container">
-                <div class="carousel-caption">
-                    <h1>Be quick</h1>
-
-                    <p>
-                        A interesting secret is a quick secret. 190 characters is your secret limit.
-                    </p>
-
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Share my secret</a></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="item">
             <img src="http://fc07.deviantart.net/fs71/i/2011/345/5/f/secret_5__not_good_enough_by_toxicalice92-d4iufy3.jpg"
                  alt="Third slide">
 
@@ -60,6 +43,25 @@
                 </div>
             </div>
         </div>
+
+        <div class="item">
+            <img src="http://upload.wikimedia.org/wikipedia/commons/6/66/Sherlock_Holmes_and_the_Secret_Weapon_2.jpg"
+                 alt="Second slide">
+
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>Discover secrets</h1>
+
+                    <p>
+                        Are you curious ? Read secrets shared by other people on the secret wall.
+                    </p>
+
+                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Look at the wall</a></p>
+                </div>
+            </div>
+        </div>
+
+
     </div>
     <a class="left carousel-control" href="#secretCarousel" role="button" data-slide="prev"><span
             class="glyphicon glyphicon-chevron-left"></span></a>

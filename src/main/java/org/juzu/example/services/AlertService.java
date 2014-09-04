@@ -14,32 +14,24 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see http://www.gnu.org/licenses/ .
  */
-package org.juzu.example.controllers;
+package org.juzu.example.services;
 
-import juzu.*;
-import org.juzu.example.services.SecretService;
+import org.juzu.example.models.AlertMessage;
 
-import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /**
- * Created by The eXo Platform SAS Author : Thibault Clement exo@exoplatform.com
+ * Created by The eXo Platform SAS
+ * Author : Thibault Clement
+ * exo@exoplatform.com
  */
-public class SecretWall {
+@Singleton
+public class AlertService {
 
-  @Inject
-  SecretService                         secretService;
+  public String getBootstrapAlertMessage(String level, String label, String message) {
 
-  @Inject
-  @Path("secretWall.gtmpl")
-  org.juzu.example.templates.secretWall secretWall;
-
-  @View
-  @Route("/secretWallView")
-  public Response.Content secretWallView() {
-
-    return secretWall.with()
-                     .page("secretWallView")
-                     .secrets(secretService.findAllEnabled().getSecrets())
-                     .ok();
+    return "<div class='alert alert-" + level + "'>"
+        + "<a href='#' class='close' data-dismiss='alert'>&times;</a>" + "<strong>" + label
+        + "</strong> " + message + "</div>";
   }
 }

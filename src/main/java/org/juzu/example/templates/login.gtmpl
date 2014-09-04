@@ -1,10 +1,15 @@
 #{decorate path=main.gtmpl/}
 #{title value=admin/}
 #{param name=page/}
+#{param name=alertMessage/}
 <div class="container">
     <div class="secret-content">
 
-        <form action='@{doLogin()}' method="POST" class="form-signin" role="form">
+        <% if (binding.variables.containsKey("alertMessage")) { %>
+        ${alertMessage}
+        <% } %>
+
+        <form action='@{ Authentication.doLogin()}' method="POST" class="form-signin" role="form">
             <h2 class="form-signin-heading">Secret Access</h2>
             <input type="email" class="form-control" placeholder="Email address" name="email" required autofocus>
             <input type="password" class="form-control" placeholder="Password" name="pwd" required>

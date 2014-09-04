@@ -17,8 +17,9 @@
 @juzu.Application(defaultController = Application.class)
 @Servlet(value = "/")
 @Bindings({
-        @Binding(org.juzu.example.security.SecretRealm.class),
-        @Binding(org.juzu.example.services.SecretService.class)
+        @Binding(value = org.juzu.example.security.SecretRealm.class),
+        @Binding(value = org.juzu.example.services.SecretService.class, scope = Scope.SINGLETON),
+        @Binding(value = org.juzu.example.services.AlertService.class, scope = Scope.SINGLETON)
 })
 @WebJars({
         @WebJar("bootstrap"),
@@ -37,6 +38,7 @@
 @Shiro(config = @juzu.plugin.shiro.Configuration("test/security/shiro.ini"), realms = {@Realm(value = org.juzu.example.security.SecretRealm.class, name = "secret")}, rememberMe = true)
 package org.juzu.example;
 
+import juzu.Scope;
 import juzu.asset.AssetLocation;
 import juzu.plugin.asset.*;
 import juzu.plugin.binding.Binding;

@@ -55,9 +55,10 @@ public class SecretService {
       disabled(6);
   }
 
-  public void add(String msg, String imgUrl) {
+  public boolean add(String msg, String imgUrl) {
     counter++;
     secrets.put(counter, new Secret(counter, msg, new Date(), imgUrl, true));
+      return true;
   }
 
   public void enabled(Integer id) {
@@ -74,7 +75,7 @@ public class SecretService {
     Secrets secretsList = new Secrets();
     for (Secret secret : secrets.values()) {
       if (secret.getEnable().equals(true))
-        secretsList.getSecrets().add(secret);
+        secretsList.getSecrets().add(0, secret);
     }
     return secretsList;
   }
@@ -83,7 +84,7 @@ public class SecretService {
     Secrets secretsList = new Secrets();
     for (Secret secret : secrets.values()) {
       if (secret.getEnable().equals(false))
-        secretsList.getSecrets().add(secret);
+        secretsList.getSecrets().add(0, secret);
     }
     return secretsList;
   }

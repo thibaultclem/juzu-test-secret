@@ -24,9 +24,7 @@ import org.juzu.example.services.SecretService;
 import javax.inject.Inject;
 
 /**
- * Created by The eXo Platform SAS Author :
- * Thibault Clement
- * exo@exoplatform.com
+ * Created by The eXo Platform SAS Author : Thibault Clement exo@exoplatform.com
  */
 public class Admin {
 
@@ -49,19 +47,24 @@ public class Admin {
                                 .ok() : Response.redirect("/login");
   }
 
-    @Action
-    @Route("/admin/secrets/{id}/disable")
-    @RequiresRoles("watcher")
-    public Response disableSecret(Integer id) {
+  @Action
+  @Route("/admin/secrets/{id}/disable")
+  @RequiresRoles("watcher")
+  public Response disableSecret(Integer id, AuthorizationException e) {
+    if (e == null) {
         secretService.disabled(id);
         return Admin_.adminPage();
     }
-
-    @Action
-    @Route("/admin/secrets/{id}/enable")
-    @RequiresRoles("watcher")
-    public Response enableSecret(Integer id) {
-        secretService.enabled(id);
-        return Admin_.adminPage();
+      else {
+        return null;
     }
+  }
+
+  @Action
+  @Route("/admin/secrets/{id}/enable")
+  @RequiresRoles("watcher")
+  public Response enableSecret(Integer id) {
+    secretService.enabled(id);
+    return Admin_.adminPage();
+  }
 }
